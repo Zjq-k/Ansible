@@ -1,0 +1,27 @@
+# tasks file for zabbix_agent init
+- name: Copy zabbix_agentd
+  copy:
+    src:    /data/soft/ansible/software/zabbix-agent-4.2.1-1.el7.x86_64.rpm
+    dest:   /root/zabbix-agent-4.2.1-1.el7.x86_64.rpm
+    mode:   0700
+    owner:  root
+  tags: copy-zabbix_agentd
+
+- name: Install zabbix_agentd
+  shell: rpm -ivh zabbix-agent-4.2.1-1.el7.x86_64.rpm
+  tags: install-zabbix_agent
+
+- name: Copy zabbix_agent.conf
+  template:
+    src:    zabbix_agentd.conf.j2
+    dest:   /etc/zabbix/zabbix_agentd.conf
+    owner:  root
+    group:  root
+    mode:   '0644'
+  tags: copy-zabbix_agent-conf
+
+- name: insert zabbix-agent file
+  shell: "echo 'zabbix_agentd -c /etc/zabbix/zabbix_agentd.conf' >> /etc/rc.local"
+
+- name: start zabbix_agent
+  shell: "zabbix_agentd -c /etc/zabbix/zabbix_agentd.conf"

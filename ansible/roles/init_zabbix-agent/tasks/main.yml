@@ -1,0 +1,9 @@
+- name: check zabbix agent
+  shell: "ps -ef|grep zabbix|grep -v grep|wc -l"
+  register: zbx_agent
+
+- include_tasks: zabbix_agent.yml
+  when: zbx_agent.stdout == '0'
+
+- name: install nfs utils
+  shell: "yum install nfs-utils -y"
