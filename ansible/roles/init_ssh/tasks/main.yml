@@ -1,0 +1,16 @@
+- name: useradd
+  command: useradd work
+
+#- name: sudoers
+#  command: echo {{item}} >> /etc/sudoers
+#  with_items:
+#        - work    ALL=(ALL)       NOPASSWD:ALL
+
+- name: sudoers-copy
+  copy: src=/data/soft/ansible/roles/init_ssh/files/sudoers dest=/etc/sudoers
+
+- name: mkdir
+  command: mkdir /home/work/.ssh/
+
+- name: ssh-copy
+  copy: src=/data/soft/ansible/roles/init_ssh/files/authorized_keys dest=/home/work/.ssh/authorized_keys
