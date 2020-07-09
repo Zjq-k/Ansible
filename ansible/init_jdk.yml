@@ -1,0 +1,6 @@
+---
+- name: init_jdk
+  hosts: jdk
+  gather_facts : yes
+  roles:
+    - init_jdk

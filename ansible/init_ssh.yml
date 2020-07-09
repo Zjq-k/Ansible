@@ -1,0 +1,6 @@
+---
+- name: init_ssh
+  hosts: ssh
+  gather_facts : yes
+  roles:
+    - init_ssh

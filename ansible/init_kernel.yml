@@ -1,0 +1,6 @@
+---
+- name: init_kernel
+  hosts: kernel
+  gather_facts : yes
+  roles :
+    - init_kernel

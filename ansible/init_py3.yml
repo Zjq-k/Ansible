@@ -1,0 +1,6 @@
+---
+- name: init_py3
+  hosts: py3
+  gather_facts : yes
+  roles:
+    - init_py3

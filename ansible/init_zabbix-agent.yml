@@ -1,0 +1,6 @@
+---
+- name: init_zabbix-agent
+  hosts: zabbix-agent
+  gather_facts : yes
+  roles:
+    - init_zabbix-agent

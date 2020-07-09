@@ -1,0 +1,6 @@
+---
+- name: init_supervisor
+  hosts: supervisor
+  gather_facts : yes
+  roles:
+    - init_supervisor

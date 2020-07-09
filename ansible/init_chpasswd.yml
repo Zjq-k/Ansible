@@ -1,0 +1,6 @@
+---
+- name: init_chpasswd
+  hosts: chpasswd
+  gather_facts : yes
+  roles:
+    - init_chpasswd

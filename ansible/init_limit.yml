@@ -1,0 +1,6 @@
+---
+- name: init_limit
+  hosts: limit
+  gather_facts : yes
+  roles :
+    - init_limit
