@@ -1,0 +1,17 @@
+- name: echo
+  shell: echo {{item}} >> /etc/sysctl.conf && sysctl -p
+  with_items: 
+        - net.ipv4.tcp_fin_timeout=2
+        - net.ipv4.tcp_tw_reuse=1
+        - net.ivp4.tcp_tw_recycle=1
+        - net.ivp4.tcp_syncookies=1
+        - net.ivp4.tcp_keepalive_time=600
+        - net.ivp4.ip_local_port_range=4000
+        - net.ivp4.tcp_max_syn_backlog=163
+        - net.ipv4.tcp_max_tw_buckets=36000
+        - net.ivp4.route.gc_timeout=100
+        - net.ivp4.tcp_syn_retries=1
+        - net.ivp4.tcp_synack_retries=1
+        - net.core.somaxconn=16384
+        - net.core.netdev_max_backlog=16384
+  ignore_errors: yes
