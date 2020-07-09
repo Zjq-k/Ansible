@@ -1,0 +1,5 @@
+- name: limit
+  shell: echo {{item}} >> /etc/security/limits.conf
+  with_items:
+         - \* soft nofile 655350
+         - \* hard nofile 655350
