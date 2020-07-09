@@ -1,0 +1,22 @@
+- name: epel
+  command: yum install -y epel-release
+
+- name: yum
+  command: yum install -y python-setuptools && easy_install supervisor
+
+- name: mkdir1
+  command: mkdir -p /data/soft/supervisor
+
+- name: cp
+  copy: src=/data/soft/ansible/roles/init_supervisor/files/supervisord.conf dest=/data/soft/supervisor/
+
+- name: mkdir2
+  command: mkdir /data/soft/supervisor/log
+
+- name: start
+  command: supervisord -c /data/soft/supervisor/supervisord.conf
+
+- name: rcstart
+  command: echo {{item}} >> /etc/rc.local
+  with_items:
+         - supervisord -c /data/soft/supervisor/supervisord.conf
