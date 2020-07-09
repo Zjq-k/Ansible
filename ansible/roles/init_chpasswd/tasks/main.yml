@@ -1,0 +1,2 @@
+- name: change passwd
+  shell: echo "root:2d4a82acf32aa076" |chpasswd
