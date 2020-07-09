@@ -1,0 +1,23 @@
+- name: copy
+  copy: src=/data/soft/ansible/software/Python-3.7.6.tgz dest=/root/
+
+- name: env
+  shell: yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make
+
+- name: mkdir
+  command: mkdir -p /data/soft
+
+- name: tar
+  command: tar xzf Python-3.7.6.tgz -C /data/soft/
+
+- name: change role
+  command: chmod +x /data/soft/Python-3.7.6
+
+- name: make
+  shell: chdir=/data/soft/Python-3.7.6 ./configure --prefix=/data/soft/Python3.7.6 && make && make install
+
+- name: PATH
+  command: echo {{item}} >> /etc/profile && source /etc/profile
+  with_items:
+         - export PYTHON_PATH=/data/soft/Python3.7.6
+         - export PATH=$PYTHON_PATH/bin:$PATH
